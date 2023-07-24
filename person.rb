@@ -1,6 +1,6 @@
 require_relative 'nameable'
 
-class Person < nameable
+class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id
 
@@ -24,9 +24,5 @@ class Person < nameable
 
   def generate_id
     rand(1000..9999)
-  end
-
-  def correct_name
-    @name
   end
 end
