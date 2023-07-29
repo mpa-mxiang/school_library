@@ -1,12 +1,11 @@
 require_relative 'nameable'
 
 class BaseDecorator < Nameable
-  def initialize(nameable)
-    super(nameable)
-    @nameable = nameable
+  def initialize(component)
+    @component = component
   end
 
   def correct_name
-    @nameable.correct_name
+    @component.correct_name
   end
 end
