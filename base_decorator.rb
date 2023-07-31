@@ -1,12 +1,12 @@
-require_relative 'nameable'
-
 class BaseDecorator < Nameable
-  def initialize(component)
+  attr_accessor :nameable
+
+  def initialize(nameable)
     super()
-    @component = component
+    self.nameable = nameable
   end
 
   def correct_name
-    @component.correct_name
+    @nameable.correct_name
   end
 end
