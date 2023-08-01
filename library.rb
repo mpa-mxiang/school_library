@@ -48,5 +48,4 @@ class Library
   def available_books
     @books.select { |book| book.rentals.empty? }
   end
-  
 end

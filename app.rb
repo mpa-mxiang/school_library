@@ -7,7 +7,7 @@ class App
   end
 
   def main
-    puts "Welcome to the Library Management System!"
+    puts 'Welcome to the Library Management System!'
     loop do
       print_options
       option = gets.chomp.to_i
@@ -15,20 +15,20 @@ class App
 
       execute_option(option)
     end
-    puts "Thank you for using the Library Management System. Goodbye!"
+    puts 'Thank you for using the Library Management System. Goodbye!'
   end
 
   private
 
   def print_options
     puts "\nSelect an option:"
-    puts "1. List all books."
-    puts "2. List all people."
-    puts "3. Create a teacher."
-    puts "4. Create a student."
-    puts "5. Create a book."
-    puts "6. Create a rental."
-    puts "7. Quit."
+    puts '1. List all books.'
+    puts '2. List all people.'
+    puts '3. Create a teacher.'
+    puts '4. Create a student.'
+    puts '5. Create a book.'
+    puts '6. Create a rental.'
+    puts '7. Quit.'
   end
 
   def execute_option(option)
@@ -46,7 +46,7 @@ class App
     when 6
       create_rental
     else
-      puts "Invalid option. Please try again."
+      puts 'Invalid option. Please try again.'
     end
   end
 
@@ -73,7 +73,7 @@ class App
     specialization = gets.chomp
 
     puts 'Enter student\'s classroom:'
-    classroom = gets.chomp 
+    gets.chomp
 
     teacher = Teacher.new(age, specialization, name: name)
     @library.add_person(teacher)
@@ -89,7 +89,7 @@ class App
 
     print "Enter student's classroom: "
     classroom_name = gets.chomp
-  
+
     classroom = @library.find_or_create_classroom(classroom_name)
 
     student = Student.new(age, classroom, name: name)
@@ -98,9 +98,9 @@ class App
   end
 
   def create_book
-    print "Enter book title: "
+    print 'Enter book title: '
     title = gets.chomp
-    print "Enter author name: "
+    print 'Enter author name: '
     author = gets.chomp
     book = Book.new(title, author)
     @library.add_book(book)
@@ -108,30 +108,30 @@ class App
   end
 
   def create_rental
-    puts "Enter student ID:"
+    puts 'Enter student ID:'
     student_id = gets.chomp.to_i
     student = @library.find_person_by_id(student_id)
 
     if student.nil?
       puts "Student with ID #{student_id} not found."
     else
-      puts "Available books:"
+      puts 'Available books:'
       @library.available_books.each_with_index do |book, index|
         puts "#{index + 1}. #{book.title} by #{book.author}"
       end
 
-      print "Enter book number to rent: "
+      print 'Enter book number to rent: '
       book_number = gets.chomp.to_i
 
       if book_number >= 1 && book_number <= @library.available_books.length
         book = @library.available_books[book_number - 1]
-        print "Enter rental date (YYYY-MM-DD): "
+        print 'Enter rental date (YYYY-MM-DD): '
         rental_date = gets.chomp
         rental = Rental.new(rental_date, student, book)
         @library.add_rental(rental)
         puts "#{book.title} rented by #{student.name}."
       else
-        puts "Invalid book number. Rental failed."
+        puts 'Invalid book number. Rental failed.'
       end
     end
   end
