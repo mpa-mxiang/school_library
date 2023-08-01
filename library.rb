@@ -14,6 +14,18 @@ class Library
     @rentals = []
   end
 
-  # Implement the methods to interact with the library data.
-  # For example: add_person, add_book, add_rental, find_person_by_id, etc.
+  # Add a person to the list of people in the library
+  def add_person(person)
+    @people << person
+  end
+
+  # Add a book to the list of books in the library
+  def add_book(book)
+    @books << book
+  end
+
+  # Add a rental to the list of rentals in the library
+  def add_rental(rental)
+    @rentals << rental
+  end
 end

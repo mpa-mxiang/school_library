@@ -65,7 +65,14 @@ class App
   def create_teacher
     print "Enter teacher's name: "
     name = gets.chomp
-    teacher = Teacher.new(name)
+
+    print "Enter teacher's age: "
+    age = gets.chomp.to_i
+
+    print "Enter teacher's specialization: "
+    specialization = gets.chomp
+
+    teacher = Teacher.new(age, specialization, name: name)
     @library.add_person(teacher)
     puts "Teacher #{name} created successfully."
   end
