@@ -24,9 +24,8 @@ puts student2.classroom.label # Output: A1
 book1 = Book.new('Title 1', 'Author 1')
 book2 = Book.new('Title 2', 'Author 2')
 
-ppl = Person.new('Max')
+ppl = Person.new(18, name: 'Max')
 ppl.rent_book(book1, '2023-07-19')
 ppl.rent_book(book2, '2023-07-20')
 
-puts ppl.rentals[0].book.title # Output: Title 1
-puts ppl.rentals[1].book.title # Output: Title 2
+puts ppl.rentals
