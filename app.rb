@@ -72,6 +72,9 @@ class App
     print "Enter teacher's specialization: "
     specialization = gets.chomp
 
+    puts 'Enter student\'s classroom:'
+    classroom = gets.chomp 
+
     teacher = Teacher.new(age, specialization, name: name)
     @library.add_person(teacher)
     puts "Teacher #{name} created successfully."
@@ -84,7 +87,12 @@ class App
     print "Enter student's age: "
     age = gets.chomp.to_i
 
-    student = Student.new(name)
+    print "Enter student's classroom: "
+    classroom_name = gets.chomp
+  
+    classroom = @library.find_or_create_classroom(classroom_name)
+
+    student = Student.new(age, classroom, name: name)
     @library.add_person(student)
     puts "Student #{name} created successfully."
   end
