@@ -80,6 +80,10 @@ class App
   def create_student
     print "Enter student's name: "
     name = gets.chomp
+
+    print "Enter student's age: "
+    age = gets.chomp.to_i
+
     student = Student.new(name)
     @library.add_person(student)
     puts "Student #{name} created successfully."
