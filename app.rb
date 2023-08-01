@@ -58,7 +58,7 @@ class App
 
   def list_people
     @library.people.each do |person|
-      puts "#{person.name} (#{person.class})"
+      puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age} [#{person.class}]"
     end
   end
 
@@ -125,7 +125,9 @@ class App
 
       if book_number >= 1 && book_number <= @library.available_books.length
         book = @library.available_books[book_number - 1]
-        rental = Rental.new(student, book)
+        print "Enter rental date (YYYY-MM-DD): "
+        rental_date = gets.chomp
+        rental = Rental.new(rental_date, student, book)
         @library.add_rental(rental)
         puts "#{book.title} rented by #{student.name}."
       else

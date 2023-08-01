@@ -14,6 +14,7 @@ class Library
     @books = []
     @rentals = []
     @classrooms = []
+    @id = []
   end
 
   # Add a person to the list of people in the library
@@ -39,4 +40,13 @@ class Library
     @classrooms << classroom
     classroom
   end
+
+  def find_person_by_id(id)
+    @people.find { |person| person.id == id }
+  end
+
+  def available_books
+    @books.select { |book| book.rentals.empty? }
+  end
+  
 end
