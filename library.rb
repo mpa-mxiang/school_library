@@ -49,14 +49,11 @@ class Library
     @books.select { |book| book.rentals.empty? }
   end
 
-  def rentals_by_person_id(person_id)
-    person = @people.find { |person| person.id == person_id }
-    if person.nil?
-      puts "Person with ID #{person} not found."
-      return []
-    end
+  def rentals_by_person_id(id)
+    person = find_person_by_id(id)
+    return [] if person.nil?
 
-    @rentals.select { |rental| rental.person_id == person_id }
+    @rentals.filter { |rental| rental.person.id == id }
   end
 
 end
