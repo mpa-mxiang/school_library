@@ -48,4 +48,15 @@ class Library
   def available_books
     @books.select { |book| book.rentals.empty? }
   end
+
+  def rentals_by_person_id(person_id)
+    person = @people.find { |person| person.id == person_id }
+    if person.nil?
+      puts "Person with ID #{person} not found."
+      return []
+    end
+
+    @rentals.select { |rental| rental.person_id == person_id }
+  end
+
 end
