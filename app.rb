@@ -111,7 +111,7 @@ class App
     puts 'Enter student ID:'
     student_id = gets.chomp.to_i
     student = @library.find_person_by_id(student_id)
-  
+
     if student.nil?
       puts "Student with ID #{student_id} not found."
     else
@@ -119,18 +119,18 @@ class App
       create_rental_for_student(student)
     end
   end
-  
+
   def list_available_books
     puts 'Available books:'
     @library.available_books.each_with_index do |book, index|
       puts "#{index + 1}. #{book.title} by #{book.author}"
     end
   end
-  
+
   def create_rental_for_student(student)
     print 'Enter book number to rent: '
     book_number = gets.chomp.to_i
-  
+
     if book_number >= 1 && book_number <= @library.available_books.length
       book = @library.available_books[book_number - 1]
       rental_date = get_rental_date
@@ -141,7 +141,7 @@ class App
       puts 'Invalid book number. Rental failed.'
     end
   end
-  
+
   def get_rental_date
     print 'Enter rental date (YYYY-MM-DD): '
     gets.chomp
