@@ -30,6 +30,7 @@ class Library
   # Add a rental to the list of rentals in the library
   def add_rental(rental)
     @rentals << rental
+    rental.person.rentals << rental
   end
 
   def find_or_create_classroom(label)
@@ -53,7 +54,7 @@ class Library
     person = find_person_by_id(id)
     return [] if person.nil?
 
-    @rentals.filter { |rental| rental.person.id == id }
+    @rentals.filter { |rental| rental.person == person }
   end
 
 end
