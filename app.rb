@@ -133,7 +133,7 @@ class App
 
     if book_number >= 1 && book_number <= @library.available_books.length
       book = @library.available_books[book_number - 1]
-      rental_date = get_rental_date
+      rental_date = trigger_rental_date
       rental = Rental.new(rental_date, student, book)
       @library.add_rental(rental)
       puts "#{book.title} rented by #{student.name}."
@@ -142,7 +142,7 @@ class App
     end
   end
 
-  def get_rental_date
+  def trigger_rental_date
     print 'Enter rental date (YYYY-MM-DD): '
     gets.chomp
   end
