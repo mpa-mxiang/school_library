@@ -127,21 +127,25 @@ class App
     puts 'Enter student ID:'
     student_id = gets.chomp.to_i
     student = @library.find_person_by_id(student_id)
-
+  
     if student.nil?
       puts "Student with ID #{student_id} not found."
     else
       list_available_books
-      create_rental_for_student(student)
+      puts 'select the book:'
+      book_index = gets.chomp.to_i + 1
+      print 'Enter book number to rent: '
+      book_number = gets.chomp.to_i
+      if book_number >= 1 && book_number <= @library.available_books.length
+        book = @library.available_books[book_number - 1]
+        rental_date = trigger_rental_date
+        rental = Rental.new(rental_date, book, student)
+        @library.add_rental(rental)
+        puts "#{book.title} rented by #{student.name}."
+      end
     end
   end
-
-  def list_available_books
-    puts 'Available books:'
-    @library.available_books.each_with_index do |book, index|
-      puts "#{index + 1}. #{book.title} by #{book.author}"
-    end
-  end
+  
 
   def list_rental
     puts 'Enter person ID:'
@@ -158,18 +162,10 @@ class App
     end
   end
 
-  def create_rental_for_student(student)
-    print 'Enter book number to rent: '
-    book_number = gets.chomp.to_i
-
-    if book_number >= 1 && book_number <= @library.available_books.length
-      book = @library.available_books[book_number - 1]
-      rental_date = trigger_rental_date
-      rental = Rental.new(rental_date, student, book)
-      @library.add_rental(rental)
-      puts "#{book.title} rented by #{student.name}."
-    else
-      puts 'Invalid book number. Rental failed.'
+  def list_available_books
+    puts 'Available books:'
+    @library.available_books.each_with_index do |book, index|
+      puts "#{index + 1}. #{book.title} by #{book.author}"
     end
   end
 
