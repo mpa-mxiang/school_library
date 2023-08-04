@@ -127,13 +127,13 @@ class App
     puts 'Enter student ID:'
     student_id = gets.chomp.to_i
     student = @library.find_person_by_id(student_id)
-  
+
     if student.nil?
       puts "Student with ID #{student_id} not found."
     else
       list_available_books
       puts 'select the book:'
-      book_index = gets.chomp.to_i + 1
+      gets.chomp.to_i
       print 'Enter book number to rent: '
       book_number = gets.chomp.to_i
       if book_number >= 1 && book_number <= @library.available_books.length
@@ -145,13 +145,12 @@ class App
       end
     end
   end
-  
 
   def list_rental
     puts 'Enter person ID:'
     person_id = gets.chomp.to_i
     rentals = @library.rentals_by_person_id(person_id)
-  
+
     if rentals.empty?
       puts "Person with ID #{person_id} has no rentals."
     else
