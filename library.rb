@@ -55,4 +55,28 @@ class Library
 
     @rentals.select { |rental| rental.person == person }
   end
+
+  def save_data_to_files
+    save_to_file('books.json', @books)
+    save_to_file('people.json', @people)
+    save_to_file('rentals.json', @rentals)
+    save_to_file('classrooms.json', @classrooms)
+  end
+
+  def load_data_from_files
+    @books = load_from_file('books.json')
+    @people = load_from_file('people.json')
+    @rentals = load_from_file('rentals.json')
+    @classrooms = load_from_file('classrooms.json')
+  end
+
+  private
+
+  def save_to_file(file_path, data)
+    File.write(file_path, JSON.generate(data))
+  end
+
+  def load_from_file(file_path)
+    JSON.parse(File.read(file_path)) if File.exist?(file_path)
+  end
 end
