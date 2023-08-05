@@ -184,27 +184,19 @@ class App
   end
 
   def save_books_to_file
-    File.open('books.json', 'w') do |file|
-      file.write(JSON.generate(@library.books))
-    end
+    File.write('books.json', JSON.generate(@library.books))
   end
 
   def save_people_to_file
-    File.open('people.json', 'w') do |file|
-      file.write(JSON.generate(@library.people))
-    end
+    File.write('people.json', JSON.generate(@library.people))
   end
 
   def save_rentals_to_file
-    File.open('rentals.json', 'w') do |file|
-      file.write(JSON.generate(@library.rentals))
-    end
+    File.write('rentals.json', JSON.generate(@library.rentals))
   end
 
   def save_classrooms_to_file
-    File.open('classrooms.json', 'w') do |file|
-      file.write(JSON.generate(@library.classrooms))
-    end
+    File.write('classrooms.json', JSON.generate(@library.classrooms))
   end
 
   def load_data_from_files
