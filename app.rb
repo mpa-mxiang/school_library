@@ -1,5 +1,6 @@
 # app.rb
 require_relative 'library'
+require 'json'
 
 class App
   def initialize
@@ -15,6 +16,8 @@ class App
 
       execute_option(option)
     end
+    save_data_to_files
+
     puts 'Thank you for using the Library Management System. Goodbye!'
   end
 
@@ -171,6 +174,60 @@ class App
   def trigger_rental_date
     print 'Enter rental date (YYYY-MM-DD): '
     gets.chomp
+  end
+
+  def save_data_to_files
+    save_books_to_file
+    save_people_to_file
+    save_rentals_to_file
+    save_classrooms_to_file
+  end
+
+  def save_books_to_file
+    File.open('books.json', 'w') do |file|
+      file.write(JSON.generate(@library.books))
+    end
+  end
+
+  def save_people_to_file
+    File.open('people.json', 'w') do |file|
+      file.write(JSON.generate(@library.people))
+    end
+  end
+
+  def save_rentals_to_file
+    File.open('rentals.json', 'w') do |file|
+      file.write(JSON.generate(@library.rentals))
+    end
+  end
+
+  def save_classrooms_to_file
+    File.open('classrooms.json', 'w') do |file|
+      file.write(JSON.generate(@library.classrooms))
+    end
+  end
+
+  def load_data_from_files
+    load_books_from_file
+    load_people_from_file
+    load_rentals_from_file
+    load_classrooms_from_file
+  end
+
+  def load_books_from_file
+    @library.books = JSON.parse(File.read('books.json')) if File.exist?('books.json')
+  end
+
+  def load_people_from_file
+    @library.people = JSON.parse(File.read('people.json')) if File.exist?('people.json')
+  end
+
+  def load_rentals_from_file
+    @library.rentals = JSON.parse(File.read('rentals.json')) if File.exist?('rentals.json')
+  end
+
+  def load_classrooms_from_file
+    @library.classrooms = JSON.parse(File.read('classrooms.json')) if File.exist?('classrooms.json')
   end
 end
 
