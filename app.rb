@@ -8,6 +8,7 @@ class App
   end
 
   def main
+    @library.load_data_from_files
     puts 'Welcome to the Library Management System!'
     loop do
       print_options

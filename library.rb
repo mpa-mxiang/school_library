@@ -14,7 +14,6 @@ class Library
     @books = []
     @rentals = []
     @classrooms = []
-    @id = []
   end
 
   # Add a person to the list of people in the library
@@ -64,10 +63,10 @@ class Library
   end
 
   def load_data_from_files
-    @books = load_from_file('books.json')
-    @people = load_from_file('people.json')
-    @rentals = load_from_file('rentals.json')
-    @classrooms = load_from_file('classrooms.json')
+    @books = load_from_file('books.json') || []
+    @people = load_from_file('people.json') || []
+    @rentals = load_from_file('rentals.json') || []
+    @classrooms = load_from_file('classrooms.json') || []
   end
 
   private
