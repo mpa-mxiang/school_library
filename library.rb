@@ -59,23 +59,22 @@ class Library
     save_to_file('books.json', @books)
     save_to_file('people.json', @people)
     save_to_file('rentals.json', @rentals)
-    save_to_file('classrooms.json', @classrooms)
   end
 
-  def load_data_from_files
-    @books = load_from_file('books.json') || []
-    @people = load_from_file('people.json') || []
-    @rentals = load_from_file('rentals.json') || []
-    @classrooms = load_from_file('classrooms.json') || []
+  def load_books_from_file
+    @books = JSON.parse(File.read('books.json')) if File.exist?('books.json')
   end
 
+  def load_people_from_file
+    @people = JSON.parse(File.read('people.json')) if File.exist?('people.json')
+  end
+
+  def load_rentals_from_file
+    @rentals = JSON.parse(File.read('rentals.json')) if File.exist?('rentals.json')
+  end
   private
 
   def save_to_file(file_path, data)
-    File.write(file_path, JSON.generate(data))
-  end
-
-  def load_from_file(file_path)
-    JSON.parse(File.read(file_path)) if File.exist?(file_path)
+    File.write(file_path, JSON.generate(data), mode='a+')
   end
 end
