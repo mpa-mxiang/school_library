@@ -5,3 +5,7 @@ class CapitalizeDecorator < BaseDecorator
     @nameable.correct_name.capitalize
   end
 end
+
+test = BaseDecorator.new('benja')
+CapitalizeDecorator.new(test)
+p test.correct_name
