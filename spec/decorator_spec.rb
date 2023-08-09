@@ -1,7 +1,7 @@
-require_relative 'base_decorator'
-require_relative 'capitalize_decorator'
-require_relative 'trimmer_decorator'
-require_relative 'nameable'
+require_relative '../base_decorator'
+require_relative '../capitalize_decorator'
+require_relative '../trimmer_decorator'
+require_relative '../nameable'
 
 RSpec.describe BaseDecorator do
   let(:baseDecorator) { BaseDecorator.new('benja') }

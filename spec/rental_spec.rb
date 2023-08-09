@@ -1,6 +1,6 @@
-require_relative 'rental'
-require_relative 'person'
-require_relative 'book'
+require_relative '../rental'
+require_relative '../person'
+require_relative '../book'
 
 RSpec.describe Rental do
   let(:person) { Person.new(25, name: 'John Doe') }
